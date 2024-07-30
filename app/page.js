@@ -1,8 +1,9 @@
 import TicketCard from "./(components)/TicketCard";
 
 const getTickets = async () => {
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || "http://localhost:3000/api"
   try {
-    const res = await fetch("http://localhost:3000/api/Tickets", {
+    const res = await fetch(`${apiBaseUrl}/Tickets`, {
       cache: "no-store",
     });
 
@@ -17,10 +18,8 @@ const getTickets = async () => {
 };
 
 const Dashboard = async () => {
-  // const { tickets } = await getTickets();
   const data = await getTickets();
 
-  // Make sure we have tickets needed for production build.
   if (!data?.tickets) {
     return <p>No tickets.</p>;
   }

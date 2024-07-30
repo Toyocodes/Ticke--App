@@ -3,8 +3,9 @@ import React from 'react'
 
 
 const getTicketById = async (id) => {
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || "http://localhost:3000/api";
   try {
-    const res = await fetch(`http://localhost:3000/api/Tickets/${id}`, {
+    const res = await fetch(`${apiBaseUrl}/Tickets/${id}`, {
       cache: "no-store",
     });
 

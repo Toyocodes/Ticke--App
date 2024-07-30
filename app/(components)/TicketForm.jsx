@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 const TicketForm = ({ ticket }) => {
   
@@ -47,7 +48,9 @@ const TicketForm = ({ ticket }) => {
         },
         body: JSON.stringify({ formData }),
       });
+      toast.success("Ticket edited successfully")
       if (!res.ok) {
+        toast.error("Error in editting ticket")
         throw new Error("Failed to update ticket");
       }
     } else {
@@ -57,12 +60,15 @@ const TicketForm = ({ ticket }) => {
         //@ts-ignore
         "Content-Type": "application/json",
       });
+      toast.success("Ticket created successfully")
       if (!res.ok) {
+        toast.error("Error in creating ticket")
         throw new Error("Failed to create ticket");
       }
     }
 
     router.push("/");
+    router.refresh()
   };
 
   const categories = [

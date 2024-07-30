@@ -1,6 +1,7 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
 import Nav from './(components)/Nav'
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
         <div className="flex-grow overflow-y-auto bg-page text-default-text">
           {children}
         </div>
+        <Toaster position="top-right" reverseOrder={false} />
       </div>
     </body>
   </html>
